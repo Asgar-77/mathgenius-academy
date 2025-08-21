@@ -33,47 +33,199 @@ os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = 'false'
 def load_custom_css():
     st.markdown("""
     <style>
-    /* Hide Streamlit branding and elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display:none;}
-    .stDecoration {display:none;}
-    .stActionButton {display:none;}
-    [data-testid="stToolbar"] {display: none;}
-    [data-testid="stDecoration"] {display: none;}
-    [data-testid="stStatusWidget"] {display: none;}
-    #MainMenu {display: none;}
-    footer {display: none;}
-    .stApp > header {display: none;}
-    .css-1rs6os {display: none;}
-    .css-17eq0hr {display: none;}
-    .viewerBadge_container__1QSob {display: none;}
-    .styles_viewerBadge__1yB5_ {display: none;}
-    #MainMenu {visibility: hidden;}
-    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+    /* Comprehensive Streamlit branding removal */
+    #MainMenu {visibility: hidden !important;}
+    footer {visibility: hidden !important;}
+    header {visibility: hidden !important;}
+    .stDeployButton {display: none !important;}
+    .stDecoration {display: none !important;}
+    .stActionButton {display: none !important;}
+    [data-testid="stToolbar"] {display: none !important;}
+    [data-testid="stDecoration"] {display: none !important;}
+    [data-testid="stStatusWidget"] {display: none !important;}
+    [data-testid="manage-app-button"] {display: none !important;}
+    [data-testid="deployButton"] {display: none !important;}
     
-    /* Force light mode theme */
-    .stApp {
+    /* Hide hamburger menu */
+    .css-14xtw13.e8zbici0 {display: none !important;}
+    .css-vk3wp9 {display: none !important;}
+    .css-1inwz65 {display: none !important;}
+    
+    /* Hide footer */
+    .css-h5rgaw.egzxvld1 {display: none !important;}
+    .css-cio0dv.egzxvld1 {display: none !important;}
+    footer.css-164nlkn.egzxvld1 {display: none !important;}
+    
+    /* Hide "Made with Streamlit" */
+    .viewerBadge_container__1QSob {display: none !important;}
+    .styles_viewerBadge__1yB5_ {display: none !important;}
+    .viewerBadge_link__1S137 {display: none !important;}
+    .viewerBadge_text__1JaDK {display: none !important;}
+    
+    /* Hide deploy button and related elements */
+    .css-1rs6os {display: none !important;}
+    .css-17eq0hr {display: none !important;}
+    .css-1vbkxwb {display: none !important;}
+    .css-1dp5vir {display: none !important;}
+    
+    /* Hide GitHub icon and deploy related buttons */
+    [title="View source on GitHub"] {display: none !important;}
+    [title="Deploy this app"] {display: none !important;}
+    .css-1avcm0n {display: none !important;}
+    
+    /* Hide top padding */
+    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem !important;}
+    
+    /* Force light mode theme - comprehensive override */
+    .stApp, .stApp * {
         background-color: #FFFFFF !important;
         color: #262730 !important;
     }
     
     .main .block-container {
         background-color: #FFFFFF !important;
+        color: #262730 !important;
     }
     
     /* Ensure sidebar stays light */
-    .css-1d391kg, .css-1lcbmhc {
+    .css-1d391kg, .css-1lcbmhc, .css-1y4p8pa {
         background-color: #F0F2F6 !important;
+        color: #262730 !important;
     }
     
     /* Override any dark mode styles */
-    [data-theme="dark"] .stApp {
+    [data-theme="dark"] .stApp,
+    [data-theme="dark"] .stApp *,
+    [data-theme="dark"] .main,
+    [data-theme="dark"] .block-container {
         background-color: #FFFFFF !important;
         color: #262730 !important;
     }
     
+    /* Force light theme on root elements */
+    html, body, #root {
+        background-color: #FFFFFF !important;
+        color: #262730 !important;
+    }
+    
+    /* Override system dark mode preference */
+    @media (prefers-color-scheme: dark) {
+        .stApp, .stApp *, html, body, #root {
+            background-color: #FFFFFF !important;
+            color: #262730 !important;
+        }
+    }
+    
+    /* Ensure input fields and buttons stay light */
+    .stSelectbox > div > div,
+    .stTextInput > div > div > input,
+    .stButton > button,
+    .stRadio > div {
+        background-color: #FFFFFF !important;
+        color: #262730 !important;
+        border-color: #E1E8ED !important;
+    }
+    
+    /* Additional hiding for newer Streamlit versions */
+    .css-15zrgzn {display: none !important;}
+    .css-eczf16 {display: none !important;}
+    .css-jn99sy {display: none !important;}
+    </style>
+    
+    <script>
+    // JavaScript to hide elements that might load dynamically
+    function hideStreamlitElements() {
+        // Hide all elements with "streamlit" in class or id
+        const elementsToHide = [
+            '[data-testid="stToolbar"]',
+            '[data-testid="stDecoration"]',
+            '[data-testid="stStatusWidget"]',
+            '[data-testid="manage-app-button"]',
+            '[data-testid="deployButton"]',
+            '.viewerBadge_container__1QSob',
+            '.styles_viewerBadge__1yB5_',
+            '.viewerBadge_link__1S137',
+            '.viewerBadge_text__1JaDK',
+            'footer',
+            '#MainMenu',
+            '.css-1rs6os',
+            '.css-17eq0hr',
+            '.css-1vbkxwb',
+            '.css-1dp5vir',
+            '.css-1avcm0n',
+            '.css-14xtw13',
+            '.css-vk3wp9',
+            '.css-1inwz65',
+            '.css-h5rgaw',
+            '.css-cio0dv',
+            '.css-15zrgzn',
+            '.css-eczf16',
+            '.css-jn99sy'
+        ];
+        
+        elementsToHide.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                element.style.display = 'none';
+                element.style.visibility = 'hidden';
+            });
+        });
+        
+        // Hide any element containing "Made with Streamlit"
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+            if (element.textContent && element.textContent.includes('Made with Streamlit')) {
+                element.style.display = 'none';
+            }
+            if (element.textContent && element.textContent.includes('Deploy')) {
+                if (element.tagName === 'BUTTON' || element.closest('button')) {
+                    element.style.display = 'none';
+                }
+            }
+        });
+    }
+    
+    // Function to force light mode
+    function forceLightMode() {
+        // Set light mode attributes
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.body.setAttribute('data-theme', 'light');
+        
+        // Override any dark mode classes
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.body.classList.add('light');
+        
+        // Force light background on all elements
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+            if (element.style.backgroundColor === 'rgb(14, 17, 23)' ||
+                element.style.backgroundColor === '#0e1117' ||
+                element.style.backgroundColor === 'rgb(38, 39, 48)' ||
+                element.style.backgroundColor === '#262730') {
+                element.style.backgroundColor = '#FFFFFF';
+                element.style.color = '#262730';
+            }
+        });
+    }
+    
+    // Run immediately and also after page loads
+    hideStreamlitElements();
+    forceLightMode();
+    document.addEventListener('DOMContentLoaded', function() {
+        hideStreamlitElements();
+        forceLightMode();
+    });
+    
+    // Run periodically to catch dynamically loaded elements
+    setInterval(function() {
+        hideStreamlitElements();
+        forceLightMode();
+    }, 1000);
+    </script>
+    
+    <style>
     /* Import Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
     
@@ -1479,5 +1631,4 @@ def main():
         st.markdown("**Made with ❤️ for young mathematicians everywhere!**")
 
 if __name__ == "__main__":
-
     main()
