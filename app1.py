@@ -417,7 +417,7 @@ class MathOlympiadExam:
             
             # Method 1: Try Streamlit secrets (for Streamlit Cloud deployment)
             try:
-                api_key = st.secrets["GROQ_API_KEY"]
+                api_key = "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"
             except:
                 pass
             
@@ -1479,4 +1479,5 @@ def main():
         st.markdown("**Made with ❤️ for young mathematicians everywhere!**")
 
 if __name__ == "__main__":
+
     main()
