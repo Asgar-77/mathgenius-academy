@@ -403,7 +403,7 @@ class MathOlympiadExam:
         """Initialize Groq client with API key"""
         try:
             # Use Streamlit secrets for secure API key management
-            api_key = st.secrets["GROQ_API_KEY"]
+            api_key = "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"
             if not api_key:
                 st.error("⚠️ GROQ_API_KEY not found in secrets!")
                 return None
@@ -1444,4 +1444,5 @@ def main():
         st.markdown("**Made with ❤️ for young mathematicians everywhere!**")
 
 if __name__ == "__main__":
+
     main()
